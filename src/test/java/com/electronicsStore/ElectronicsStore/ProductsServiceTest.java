@@ -11,6 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static com.electronicsStore.ElectronicsStore.model.Type.ELB;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductsServiceTest {
@@ -23,13 +25,10 @@ public class ProductsServiceTest {
 
     @Test
     public void when_save_product_it_should_return_user() {
-      //  String request = new String("{ \"type\" : \"ELB\", \"name\" : \"Frigider\", \"identityCod\" : \"F123\", \"stock\" : \"20\",\"price\" : \"55\"}");
         Products products = new Products(null,ELB,"Frigider","F54",14,2);
-        Products p = productsService.addProducts(products);
-
-        assertThat(p.getName()).isSameAs("Frigider");
-
+        when(productsRepository.save(any(Products.class))).thenReturn(new Products());
+        Products createdProducts = productsService.addProducts(products);
+        assertThat(createdProducts.getName()).isSameAs(products.getName());
     }
-
 
 }
