@@ -30,4 +30,6 @@ public class ProductsServiceTest {
         assertThat(p.getName()).isSameAs("Frigider");
 
     }
+
+
 }
