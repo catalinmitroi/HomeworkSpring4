@@ -9,47 +9,48 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("product")
 public class ProductsController {
     private final ProductsService productsService;
 
     //get all products with deleted products
-    @GetMapping("products/all")
+    @GetMapping("all")
     public List<Products> getAllProducts() {
         return productsService.getAllProducts();
     }
 
     //get all products without deleted products
-    @GetMapping("products/nonDeleted")
+    @GetMapping("nonDeleted")
     public List<Products> getAllNonDeletedProducts() {
         return productsService.getAllNDeletedProducts();
     }
 
     //add products
-    @PostMapping("products")
+    @PostMapping
     public Products addProducts(@RequestBody Products products) {
         return productsService.addProducts(products);
     }
 
     //softDelete
-    @PutMapping("products/delete/{id}")
+    @PutMapping("delete/{id}")
     public void softDelete(@PathVariable("id") Integer id) {
         productsService.softDelete(id);
     }
 
     //update Stock
-    @PutMapping("products/updateStock/{id}")
+    @PutMapping("updateStock/{id}")
     public void updateStock(@PathVariable("id") Integer id) {
         productsService.updateStock(id);
     }
 
     //increment stock
-    @PutMapping("products/increment/{id}")
+    @PutMapping("increment/{id}")
     public void increment(@PathVariable("id") Integer id) {
         productsService.incrementStock(id);
     }
 
     //decrement stock
-    @PutMapping("products/decrement/{id}")
+    @PutMapping("decrement/{id}")
     public void decrement(@PathVariable("id") Integer id) {
         productsService.decrementStock(id);
     }

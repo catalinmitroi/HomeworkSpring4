@@ -17,16 +17,24 @@ import javax.persistence.*;
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    @NotNull
-    String name;
-    @NotNull
-    String identityCod;
-    @NotNull
-    Type type;
-    @NotNull
-    Integer stock;
-    Boolean Deleted = Boolean.FALSE;
+    private Integer id;
+
+    private Type type;
+    private String name;
+    private String identityCod;
+    private Integer stock;
+    private Boolean Deleted = Boolean.FALSE;
+
+    private Integer price;
+
+    public Products(Integer id, Type tip, String s, String s1, int i, int i1) {
+        this.id=id;
+        this.type = tip;
+        this.name = s;
+        this.identityCod = s1;
+        this.stock = i;
+        this.price = i1;
+    }
 
     public boolean isDeleted() {
         return this.Deleted;
